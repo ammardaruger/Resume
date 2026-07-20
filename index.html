@@ -85,6 +85,7 @@
   .t-edu .deg{font-size:13.5px;font-weight:600;}
   .t-edu .sch{font-size:11.5px;color:var(--muted);margin:2px 0 4px;}
   .t-edu .det{font-size:11.5px;color:#374151;line-height:1.55;}
+  .t-edu .det a{color:var(--accent);border-bottom:1px dotted var(--accent);}
   .t-edu .block{margin-bottom:14px;}
   .t-edu .block:last-child{margin-bottom:0;}
   .pill{display:inline-block;margin-top:6px;font-size:10.5px;background:var(--accent-soft);color:var(--accent-deep);padding:3px 8px;border-radius:4px;font-weight:500;}
@@ -147,6 +148,8 @@
       </div>
     </div>
 
+    <div class="col-12 mt-2"></div>
+
     <div class="col-12">
       <div class="tile t-exp">
         <div class="h">Experience</div>
@@ -154,7 +157,7 @@
         <div class="title">Freelance Software Engineer / ML Engineer</div>
         <div class="org">Independent &mdash; remote client work</div>
         <ul>
-          <li>Delivered an <b>adaptive video conversion scoring platform</b>: a deterministic engine routing source videos to reject, conservative, standard, or premium conversion workflows by combining quality, suitability, cost, and confidence scoring over OCR, ASR, and tracking services &mdash; with scene-level crop recommendations and explainable JSON outputs. <i>(YOLO, OpenCV, FFmpeg, Whisper, FastAPI, AWS)</i></li>
+          <li>Delivered an <b>adaptive video conversion scoring platform</b>: a FastAPI service that scores source video &mdash; via OCR, ASR, face detection, and YOLO tracking &mdash; into quality, suitability, cost, and confidence signals, routes it to reject/conservative/standard/premium conversion, then auto-generates ratio-specific social crops uploaded to S3, delivered over sync HTTP, DB-backed async hooks, or WebSocket. <i>(FastAPI, YOLO, OpenCV, PaddleOCR, Faster-Whisper, PostgreSQL, JWT, AWS S3)</i></li>
           <li>Built a <b>vehicle classification and damage detection system</b> for a client in the Saudi Arabian market: a custom CUDA-trained model on region-specific vehicles to classify car make and model, detect damage such as scratches and dents, and generate repair-cost estimates, served via FastAPI. <i>(YOLO, OpenCV, TensorFlow, PyTorch, NumPy, Pandas, CUDA, FastAPI)</i></li>
         </ul>
       </div>
@@ -193,19 +196,25 @@
       </div>
     </div>
 
+    <div class="col-12 mt-4 mb-1">
+      <div class="h">Projects</div>
+    </div>
+
     <div class="col-12 col-md-6">
       <div class="tile t-proj h-100" onclick="this.classList.toggle('open')">
         <h3>Adaptive video conversion scoring platform <span class="chev">&#9660;</span></h3>
-        <p>Deterministic engine routing source videos to reject, conservative, standard, or premium conversion workflows.</p>
-        <div class="stack">YOLO &middot; OpenCV &middot; FFmpeg &middot; Whisper &middot; FastAPI &middot; AWS</div>
+        <p>FastAPI service that scores source video against quality, suitability, cost, and confidence signals, then auto-converts it into ratio-specific social crops.</p>
+        <div class="stack">FastAPI &middot; YOLO (Ultralytics) &middot; OpenCV &middot; PaddleOCR &middot; Faster-Whisper &middot; PostgreSQL &middot; JWT &middot; AWS S3 &middot; WebSockets</div>
         <div class="detail">
           <div class="detail-inner">
-            <p>Combines quality, suitability, cost, and confidence scoring over OCR, ASR, and tracking services to decide how a source video should be processed.</p>
+            <p>Ingests source video (including via MRSS feeds from 11+ content providers) and runs it through a scoring pipeline &mdash; ffprobe/frame sampling, OCR text density, face presence, ASR, and YOLO tracking &mdash; to compute composite scores that route each clip to reject, conservative, standard, or premium conversion.</p>
             <ul>
-              <li>Scene-level crop recommendations for different output formats.</li>
-              <li>Explainable JSON outputs so the routing decision is auditable, not a black box.</li>
+              <li>Convert pipeline selects a render mode per clip: YOLO-tracked crop, layout-aware composition for text-heavy frames, or blurred-background "preserve wide" recomposition for portrait/pillarboxed sources &mdash; then uploads the finished renders to S3.</li>
+              <li>JWT-authenticated API with per-user threshold overrides and PostgreSQL-backed conversion history, so async job polling survives multi-worker restarts.</li>
+              <li>Delivered three ways: synchronous HTTP, DB-backed async hooks, and real-time WebSocket status streaming.</li>
               <li>Deployed as a client freelance engagement, Feb 2026 &rarr; present.</li>
             </ul>
+            <p class="mb-0"><a href="https://github.com/ammardaruger/VideoElephantOrchestrator.git" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub repo &#8599;</a></p>
           </div>
         </div>
       </div>
@@ -263,12 +272,33 @@
 
 
     <div class="col-12 col-md-6">
+      <div class="tile t-proj h-100" onclick="this.classList.toggle('open')">
+        <h3>RAG-based PDF chatbot &amp; dashboard <span class="chev">&#9660;</span></h3>
+        <p>Modular Python chatbot that learns from uploaded PDFs and answers questions with cited sources &mdash; runs fully offline with zero API keys.</p>
+        <div class="stack">Python &middot; Streamlit &middot; RAG &middot; scikit-learn &middot; pypdf &middot; OpenAI &middot; Anthropic API</div>
+        <div class="detail">
+          <div class="detail-inner">
+            <p>Self-contained retrieval-augmented chatbot built from scratch as a personal project, with PDF ingestion, chunking, embedding, vector search, and LLM generation each living in their own swappable module.</p>
+            <ul>
+              <li>TF-IDF embeddings by default for zero-download setup, with an optional sentence-transformers backend for higher-quality semantic search.</li>
+              <li>Pluggable LLM layer supporting OpenAI, Anthropic, or a built-in no-API fallback that returns page-cited PDF passages directly.</li>
+              <li>Streamlit dashboard showing source page numbers and relevance scores for every answer, plus a terminal CLI for quick testing.</li>
+            </ul>
+            <p class="mb-0"><a href="https://github.com/ammardaruger/chatbotpdf.git" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub repo &#8599;</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-4"></div>
+
+    <div class="col-12 col-md-6">
       <div class="tile t-edu h-100">
         <div class="h">Education</div>
         <div class="block">
           <div class="deg">Master of Artificial Intelligence (Professional)</div>
           <div class="sch">Deakin University &middot; 2023&ndash;2025 full-time &middot; WAM 67.08</div>
-          <div class="det">Data Science major. Thesis: Explainability in Reinforcement Learning using LLMs.</div>
+          <div class="det">Data Science major. Thesis: Explainability in Reinforcement Learning using LLMs.<br><a href="https://www.myequals.net/sharelink/7c8c627f-89b1-4645-a055-2a2d41de6a5a/4558dd53-e045-41e0-8821-e4599cf62189" target="_blank" rel="noopener">Verified digital credential &#8599;</a></div>
         </div>
         <div class="block">
           <div class="deg">Bachelor of Computer Systems Engineering</div>
@@ -284,6 +314,10 @@
           <div class="h">Certification &amp; languages</div>
           <a class="cert d-flex justify-content-between align-items-center" href="https://www.credly.com/badges/e2fbffd7-9200-4412-aa8d-d7d36755801c" target="_blank" rel="noopener">
             <div><div class="t">Microsoft Certified: Azure AI Fundamentals</div><div class="s">Verified via Credly</div></div>
+            <span class="arrow">&#8599;</span>
+          </a>
+          <a class="cert d-flex justify-content-between align-items-center mt-2" href="https://learn.microsoft.com/en-us/users/ammardaruger-5719/credentials/9fb576478d8f3082" target="_blank" rel="noopener">
+            <div><div class="t">Microsoft Certified: Azure AI Engineer Associate</div><div class="s">Verified via Microsoft Learn</div></div>
             <span class="arrow">&#8599;</span>
           </a>
         </div>
