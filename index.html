@@ -60,7 +60,7 @@
   .t-exp li{font-size:12px;line-height:1.6;color:#374151;margin-bottom:5px;}
   .t-exp li b{color:var(--ink);}
 
-  .t-proj{grid-column:span 2;background:#fff;border:1px solid var(--line);}
+  .t-proj{grid-column:span 3;background:#fff;border:1px solid var(--line);}
   .t-proj h3{font-size:13px;font-weight:600;margin:0 0 7px;}
   .t-proj p{font-size:11.5px;line-height:1.6;color:var(--muted);margin:0 0 9px;}
   .t-proj .stack{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--accent);font-weight:600;}
@@ -135,8 +135,19 @@
       <p>I'm not chasing one label. The value is in the engineer who moves fluidly across the model, the API it lives behind, and the product it powers.</p>
     </div>
 
-    <div class="tile t-exp">
+    <div class="tile t-exp" style="grid-column:span 6;">
       <div class="h">Experience</div>
+      <div class="dates">2026.02 → Present</div>
+      <div class="title">Freelance Software Engineer / ML Engineer</div>
+      <div class="org">Independent — remote client work</div>
+      <ul>
+        <li>Delivered an <b>adaptive video conversion scoring platform</b>: a deterministic engine routing source videos to reject, conservative, standard, or premium conversion workflows by combining quality, suitability, cost, and confidence scoring over OCR, ASR, and tracking services — with scene-level crop recommendations and explainable JSON outputs. <i>(YOLO, OpenCV, FFmpeg, Whisper, FastAPI, AWS)</i></li>
+        <li>Built a <b>vehicle classification and damage detection system</b> for a client in the Saudi Arabian market: a custom CUDA-trained model on region-specific vehicles to classify car make and model, detect damage such as scratches and dents, and generate repair-cost estimates, served via FastAPI. <i>(YOLO, OpenCV, TensorFlow, PyTorch, NumPy, Pandas, CUDA, FastAPI)</i></li>
+      </ul>
+    </div>
+
+    <div class="tile t-exp">
+      <div class="h">&nbsp;</div>
       <div class="dates">2024.03 → 2025.12</div>
       <div class="title">AI Software Developer · Part-Time</div>
       <div class="org"><a href="https://intellicore.tech/" target="_blank" rel="noopener">IntelliCore Technologies ↗</a> — Melbourne</div>
@@ -164,16 +175,6 @@
       </ul>
     </div>
 
-    <div class="tile t-proj">
-      <h3>Adaptive video conversion scoring platform</h3>
-      <p>Deterministic scoring engine routing videos to reject / convert / premium workflows — quality, cost, and confidence analysis with explainable outputs.</p>
-      <div class="stack">YOLO · OpenCV · FastAPI · AWS</div>
-    </div>
-    <div class="tile t-proj">
-      <h3>Vehicle classification &amp; damage detection</h3>
-      <p>Client project for the Saudi market: custom model classifying make/model, detecting scratches and dents, and estimating repair cost.</p>
-      <div class="stack">YOLO · OpenCV · TF · PyTorch</div>
-    </div>
     <div class="tile t-proj">
       <h3>Explainability in RL using LLMs</h3>
       <p>Master's thesis applying LLMs to make reinforcement-learning agent behaviour interpretable to non-experts.</p>
