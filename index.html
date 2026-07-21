@@ -129,9 +129,19 @@
   .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:16px;cursor:pointer;color:var(--ink);}
   section[id]{scroll-margin-top:76px;}
   @media (max-width:760px){
+    header.site-header{
+      flex-direction:column;align-items:center;text-align:center;
+    }
+    header.site-header .brand{width:100%;}
+    header.site-header .header-actions{
+      flex-direction:column;align-items:center;justify-content:center;
+      width:100%;gap:10px;
+    }
+    .nav-toggle{position:absolute;top:14px;right:5vw;}
+    .avail-pill{text-align:center;}
     nav.site-nav{
       display:none;width:100%;order:3;
-      flex-direction:column;gap:2px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);
+      flex-direction:column;align-items:center;gap:2px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);
     }
     nav.site-nav.open{display:flex;}
     nav.site-nav a{padding:9px 12px;border-radius:6px;}
@@ -153,7 +163,7 @@
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="d-flex align-items-center gap-2">
+    <div class="header-actions d-flex align-items-center gap-2">
       <div class="avail-pill"><b>Available to work remotely, or join immediately</b></div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="siteNav">&#9776;</button>
     </div>
