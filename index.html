@@ -35,6 +35,13 @@
     padding:7px 14px;border-radius:999px;font-weight:500;
   }
   .avail-pill b{color:var(--accent);}
+  .cv-btn{
+    display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:600;
+    background:var(--accent);color:#fff;padding:8px 16px;border-radius:999px;
+    text-decoration:none;white-space:nowrap;line-height:1;transition:background .15s;
+  }
+  .cv-btn:hover{background:var(--accent-deep);color:#fff;}
 
   .tile{
     background:var(--tile);border-radius:16px;padding:24px;
@@ -72,6 +79,9 @@
   .t-proj.open h3 .chev{transform:rotate(180deg);}
   .t-proj p{font-size:11.5px;line-height:1.6;color:var(--muted);margin:0 0 9px;}
   .t-proj .stack{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--accent);font-weight:600;}
+  .t-proj .metric{margin-top:11px;padding-top:10px;border-top:1px dashed var(--line);display:flex;align-items:baseline;gap:7px;}
+  .t-proj .metric .mval{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--accent);line-height:1;}
+  .t-proj .metric .mlabel{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-family:'IBM Plex Mono',monospace;}
   .t-proj .detail{
     max-height:0;overflow:hidden;opacity:0;
     transition:max-height .25s ease, opacity .2s ease, margin-top .25s ease;
@@ -108,6 +118,9 @@
   .t-proj.hide{display:none;}
 
   .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;padding:6px 12px;background:#fff;border:1px solid var(--line);border-radius:999px;color:#374151;}
+  .skill-row{margin-bottom:12px;}
+  .skill-row:last-child{margin-bottom:0;}
+  .skill-cat{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;color:var(--accent-deep);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px;}
 
   .t-contact{background:var(--accent);color:#fff;}
   .t-contact .h{color:#DDD3F8;}
@@ -128,7 +141,8 @@
     margin:0 -5vw 24px;padding:14px 5vw!important;
   }
   header.site-header .brand{flex-shrink:0;}
-  nav.site-nav{display:flex;gap:4px;flex-wrap:wrap;}
+  nav.site-nav{display:flex;gap:4px;flex-wrap:wrap;flex:1;justify-content:center;}
+  header.site-header .header-actions{flex-shrink:0;}
   nav.site-nav a{
     font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;
     color:var(--muted);padding:6px 10px;border-radius:999px;
@@ -175,6 +189,7 @@
     </nav>
     <div class="header-actions d-flex align-items-center gap-2">
       <div class="avail-pill"><b>Available to work remotely, or join immediately</b></div>
+      <a href="Ammar_Daruger_Resume.pdf" download class="cv-btn">Download CV</a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="siteNav">&#9776;</button>
     </div>
   </header>
@@ -202,9 +217,8 @@
     <div class="col-12" id="about">
       <div class="tile t-about">
         <div class="h">About</div>
-        <p class="hook">Most "AI engineers" can demo a model. Very few can ship one that survives production traffic, ambiguous requirements, and a Friday-afternoon outage.</p>
-        <p>I spent the last two years watching promising ML work stall exactly there — a strong notebook result with no path to an API, a full-stack team with no one who understood the model layer, a thesis full of insight that never reached a real user. So I built the bridge myself: training and deploying NLP models on an IEEE-published, Master's-level research foundation, wrapping them in REST APIs and backend services that hold up under real load, and shipping full-stack platforms for products running with hundreds of concurrent users.</p>
-        <p>I'm not chasing one label. The value is in the engineer who moves fluidly across the model, the API it lives behind, and the product it powers.</p>
+        <p class="hook">A dedicated Software Engineer who bridges Backend Engineering, Machine Learning, Data Science, and Generative AI into systems that actually ship.</p>
+        <p>I bring hands-on experience designing data pipelines, building AI-powered applications, automating workflows, and delivering cross-platform integrations — turning research-grade models and messy data into REST APIs and full-stack platforms that hold up under real production load.</p>
       </div>
     </div>
 
@@ -324,18 +338,20 @@
     <div class="col-12 col-md-6">
       <div class="tile t-proj h-100" onclick="this.classList.toggle('open')">
         <h3>Adaptive video conversion scoring platform <span class="chev">&#9660;</span></h3>
-        <p>FastAPI service that scores source video against quality, suitability, cost, and confidence signals, then auto-converts it into ratio-specific social crops.</p>
+        <p>FastAPI service that scores source video quality to auto-crop it into multiple ratio-specific variants for social media, with dynamic cropping, language dubbing, and subtitle generation.</p>
         <div class="stack">FastAPI &middot; YOLO (Ultralytics) &middot; OpenCV &middot; PaddleOCR &middot; Faster-Whisper &middot; PostgreSQL &middot; JWT &middot; AWS S3 &middot; WebSockets</div>
+        <div class="metric"><span class="mval">11+</span><span class="mlabel">Content sources ingested</span></div>
         <div class="detail">
           <div class="detail-inner">
             <p>Ingests source video (including via MRSS feeds from 11+ content providers) and runs it through a scoring pipeline &mdash; ffprobe/frame sampling, OCR text density, face presence, ASR, and YOLO tracking &mdash; to compute composite scores that route each clip to reject, conservative, standard, or premium conversion.</p>
             <ul>
-              <li>Convert pipeline selects a render mode per clip: YOLO-tracked crop, layout-aware composition for text-heavy frames, or blurred-background "preserve wide" recomposition for portrait/pillarboxed sources &mdash; then uploads the finished renders to S3.</li>
+              <li>Dynamic cropping renders each clip into multiple ratio-specific variants for social platforms: YOLO-tracked crop, layout-aware composition for text-heavy frames, or blurred-background "preserve wide" recomposition for portrait/pillarboxed sources.</li>
+              <li>Language conversion pipeline can dub the original audio into a different language and generate subtitles in the target language.</li>
               <li>JWT-authenticated API with per-user threshold overrides and PostgreSQL-backed conversion history, so async job polling survives multi-worker restarts.</li>
               <li>Delivered three ways: synchronous HTTP, DB-backed async hooks, and real-time WebSocket status streaming.</li>
               <li>Deployed as a client freelance engagement, Feb 2026 &rarr; present.</li>
             </ul>
-            <p class="mb-0"><a href="https://github.com/ammardaruger/VideoElephantOrchestrator.git" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub repo &#8599;</a></p>
+            <p class="mb-0"><a href="https://videoelephant.com/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Live at videoelephant.com &#8599;</a> &middot; <a href="https://github.com/ammardaruger/VideoElephantOrchestrator.git" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub repo &#8599;</a></p>
           </div>
         </div>
       </div>
@@ -345,6 +361,7 @@
         <h3>Vehicle classification &amp; damage detection <span class="chev">&#9660;</span></h3>
         <p>Custom CUDA-trained model for a client in the Saudi Arabian market, served via FastAPI.</p>
         <div class="stack">YOLO &middot; OpenCV &middot; TensorFlow &middot; PyTorch &middot; NumPy &middot; Pandas &middot; CUDA</div>
+        <div class="metric"><span class="mval">CUDA</span><span class="mlabel">Accelerated inference</span></div>
         <div class="detail">
           <div class="detail-inner">
             <p>Trained on region-specific vehicles to classify car make and model, then detect damage such as scratches and dents.</p>
@@ -359,25 +376,10 @@
     </div>
     <div class="col-12 col-md-6">
       <div class="tile t-proj h-100" onclick="this.classList.toggle('open')">
-        <h3>Explainability in RL using LLMs <span class="chev">&#9660;</span></h3>
-        <p>Master's thesis applying LLMs to make reinforcement-learning agent behaviour interpretable to non-experts.</p>
-        <div class="stack">RL &middot; LLMs &middot; XAI</div>
-        <div class="detail">
-          <div class="detail-inner">
-            <p>Research project for the Master of Artificial Intelligence at Deakin University (2023&ndash;2025).</p>
-            <ul>
-              <li>Uses large language models to translate an RL agent's decision-making into plain-language explanations.</li>
-              <li>Aimed at stakeholders without a machine learning background.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-6">
-      <div class="tile t-proj h-100" onclick="this.classList.toggle('open')">
         <h3>Real estate management platform <span class="chev">&#9660;</span></h3>
         <p>Full-stack platform shipped for hundreds of concurrent users with executive Power BI reporting.</p>
         <div class="stack">AngularJS &middot; .NET 6 &middot; SQL</div>
+        <div class="metric"><span class="mval">&#8595;25%</span><span class="mlabel">Avg. API latency</span></div>
         <div class="detail">
           <div class="detail-inner">
             <p>Built at Contour Software Ltd (Feb 2022 &ndash; June 2023) as the full-stack developer on the platform.</p>
@@ -397,6 +399,7 @@
         <h3>RAG-based PDF chatbot &amp; dashboard <span class="chev">&#9660;</span></h3>
         <p>Modular Python chatbot that learns from uploaded PDFs and answers questions with cited sources &mdash; runs fully offline with zero API keys.</p>
         <div class="stack">Python &middot; Streamlit &middot; RAG &middot; scikit-learn &middot; pypdf &middot; OpenAI &middot; Anthropic API</div>
+        <div class="metric"><span class="mval">$0</span><span class="mlabel">API cost (offline mode)</span></div>
         <div class="detail">
           <div class="detail-inner">
             <p>Self-contained retrieval-augmented chatbot built from scratch as a personal project, with PDF ingestion, chunking, embedding, vector search, and LLM generation each living in their own swappable module.</p>
@@ -420,6 +423,7 @@
           <div class="deg">Master of Artificial Intelligence (Professional)</div>
           <div class="sch">Deakin University &middot; 2023&ndash;2025 full-time &middot; WAM 67.08</div>
           <div class="det">Data Science major. Thesis: Explainability in Reinforcement Learning using LLMs.<br><a href="https://www.myequals.net/sharelink/7c8c627f-89b1-4645-a055-2a2d41de6a5a/4558dd53-e045-41e0-8821-e4599cf62189" target="_blank" rel="noopener">Verified digital credential &#8599;</a></div>
+          <div class="det mt-2">Research: used LLMs to translate an RL agent's decision-making into plain-language explanations for non-expert stakeholders.</div>
         </div>
         <div class="block">
           <div class="deg">Bachelor of Computer Systems Engineering</div>
@@ -454,9 +458,70 @@
     <div class="col-12" id="skills">
       <div class="tile t-skills">
         <div class="h">Core stack</div>
-        <div class="d-flex flex-wrap gap-2">
-          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">LLMs</span><span class="tag">NLP</span><span class="tag">RAG</span><span class="tag">.NET 6</span><span class="tag">AngularJS</span><span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">CI/CD</span><span class="tag">Azure</span><span class="tag">SQL</span>
+
+        <div class="skill-row">
+          <div class="skill-cat">Programming</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">Python</span><span class="tag">Java</span><span class="tag">Node.js</span><span class="tag">SQL</span>
+          </div>
         </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">AI / ML</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">Keras</span><span class="tag">Scikit-Learn</span><span class="tag">NLTK</span><span class="tag">NLP</span><span class="tag">YOLO</span><span class="tag">Computer Vision</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Generative AI / LLMs</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">LLMs</span><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Prompt Engineering</span><span class="tag">Twilio</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Data Engineering</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">Apache Airflow</span><span class="tag">Kafka</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Data Analytics</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Plotly</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Web Frameworks</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Django</span><span class="tag">Express.js</span><span class="tag">.NET 6</span><span class="tag">.NET Core 6</span><span class="tag">AngularJS</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Databases</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">Oracle</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">MongoDB</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">Cloud &amp; DevOps</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">AWS S3</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Linux</span><span class="tag">Git</span><span class="tag">CI/CD</span><span class="tag">Azure</span>
+          </div>
+        </div>
+
+        <div class="skill-row">
+          <div class="skill-cat">APIs &amp; Architecture</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="tag">REST APIs</span><span class="tag">Microservices</span>
+          </div>
+        </div>
+
       </div>
     </div>
 
