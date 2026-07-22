@@ -413,6 +413,25 @@
         </div>
       </div>
     </div>
+    <div class="col-12 col-md-6">
+      <div class="tile t-proj h-100" onclick="this.classList.toggle('open')">
+        <h3>Student marks NL chatbot <span class="chev">&#9660;</span></h3>
+        <p>LangChain SQL agent that answers natural-language questions about student assessment marks, computed live from Postgres.</p>
+        <div class="stack">LangChain &middot; PostgreSQL &middot; SQLAlchemy &middot; Pandas &middot; Ollama &middot; pytest</div>
+        <div class="metric"><span class="mval">Plain-English</span><span class="mlabel">reports, zero SQL required</span></div>
+        <div class="detail">
+          <div class="detail-inner">
+            <p>Cleans and normalizes messy CSV exports (header variants, inconsistent months, string-typed numbers) into a normalized Postgres schema, then lets a LangChain SQL agent answer natural-language questions computed live from the database.</p>
+            <ul>
+              <li>Idempotent ingestion pipeline: re-running on an updated CSV upserts corrected records instead of duplicating them.</li>
+              <li>Agent is scoped to a single read-only view, backed by a restricted DB role with no write access.</li>
+              <li>Every generated SQL statement passes through a dependency-light, unit-tested safety guard that blocks anything beyond a single read-only SELECT before it reaches the database.</li>
+              <li>End-to-end test suite covers preprocessing, the SQL guardrail, and integration behavior against live Postgres (idempotency, upsert correctness, constraint enforcement).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="col-12 mt-4"></div>
 
